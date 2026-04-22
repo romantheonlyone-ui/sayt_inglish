@@ -1,0 +1,849 @@
+/* ========== СОВРЕМЕННЫЕ ШРИФТЫ ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap');
+
+/* CSS Variables - легкая кастомизация */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --accent: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #64748b;
+    --success: #10b981;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--gradient-1);
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+
+
+/* Современный хедер с анимацией */
+header {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #374151;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+    transform: translateY(-2px);
+}
+
+
+
+/* Современная навигация - минималистичная */
+nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #4b5563;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+}
+
+nav ul li a:hover {
+    background: #f3f4f6;
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+/* Активная ссылка */
+nav ul li a.active {
+    background: var(--primary);
+    color: white;
+}
+
+nav ul li a.active:hover {
+    background: var(--primary-dark);
+}
+
+/* ========== ОСНОВНОЙ КОНТЕЙНЕР ========== */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ========== СОВРЕМЕННЫЕ КАРТОЧКИ ========== */
+section {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+section:hover::before {
+    transform: scaleX(1);
+}
+
+section:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    display: inline-block;
+}
+
+section h2 a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+section h2 a:hover {
+    color: var(--primary-dark);
+}
+
+section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--dark);
+    padding-left: 0;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.75rem;
+}
+
+section p {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* ========== СОВРЕМЕННЫЕ КНОПКИ ========== */
+#interestingBtn {
+    background: var(--gradient-1);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+    color: white;
+}
+
+#interestingBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Кнопка "наверх" */
+#backToTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--primary);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+}
+
+#backToTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTopBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-4px);
+}
+
+/* ========== ФУТЕР ========== */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* ========== СЛОВАРЬ (Definition List) ========== */
+dl {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+dt {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-top: 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+dt::before {
+    content: '📖';
+    margin-right: 0.5rem;
+}
+
+dd {
+    margin-left: 1.5rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* ========== СКРОЛЛБАР ========== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* ========== АНИМАЦИИ ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+/* Stagger animation for cards */
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.3s; }
+section:nth-child(4) { animation-delay: 0.4s; }
+section:nth-child(5) { animation-delay: 0.5s; }
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 768px) {
+    header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        justify-content: center;
+    }
+    
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+    
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+    
+    nav ul {
+        justify-content: center;
+        gap: 0.25rem;
+    }
+    
+    nav ul li a {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    main {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+    
+    section {
+        padding: 1.25rem;
+    }
+    
+    section h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul li a {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .logo-badge {
+        font-size: 0.6rem;
+    }
+    
+    #backToTopBtn {
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* ========== GLASSMORPHISM ЭФФЕКТЫ ========== */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ========== УТИЛИТЫ ========== */
+.text-gradient {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.shadow-hover {
+    transition: all 0.3s ease;
+}
+
+.shadow-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+
+
+
+
+
+
+/* Стили для словаря */
+.vocab-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.word-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.word-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-1);
+}
+
+.english-word {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.transcription {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+    font-family: monospace;
+}
+
+.russian-translation {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.russian-translation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.example-sentence {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--gray);
+    border-left: 3px solid var(--primary);
+    text-align: left;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+
+.control-btn.primary {
+    background: var(--gradient-1);
+    color: white;
+}
+
+.control-btn.secondary {
+    background: #f1f5f9;
+    color: var(--dark);
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-1);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 0.25rem;
+}
+
+.word-counter {
+    text-align: center;
+    color: var(--gray);
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+@keyframes slideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-50px); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.word-card.slide-out {
+    animation: slideOut 0.3s ease forwards;
+}
+
+.word-card.slide-in {
+    animation: slideIn 0.3s ease forwards;
+}
+
+
+
+
+
+
+
+/* ========== СТИЛИ ДЛЯ ИГРЫ НАЙДИ ПАРУ ========== */
+.game-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.game-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.game-stat {
+    text-align: center;
+}
+
+.game-stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.game-stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.card {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    color: white;
+    padding: 0.5rem;
+    word-break: break-word;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card.flipped {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    transform: scale(0.98);
+}
+
+.card.matched {
+    background: #d1fae5;
+    color: #065f46;
+    cursor: default;
+    opacity: 0.7;
+    border: 2px solid #10b981;
+    transform: scale(0.95);
+}
+
+.card.matched:hover {
+    transform: scale(0.95);
+}
+
+.card:active {
+    transform: scale(0.95);
+}
+
+.game-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.game-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    background: #f1f5f9;
+    color: var(--dark);
+}
+
+.game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.game-btn.difficulty.easy {
+    background: #10b981;
+    color: white;
+}
+
+.game-btn.difficulty.medium {
+    background: #f59e0b;
+    color: white;
+}
+
+.game-btn.difficulty.hard {
+    background: #ef4444;
+    color: white;
+}
+
+.game-message {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+}
+
+.game-message.win {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.game-message.lose {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+@media (max-width: 768px) {
+    .game-board {
+        gap: 0.75rem;
+    }
+    
+    .card {
+        font-size: 0.8rem;
+    }
+    
+    .game-stat-value {
+        font-size: 1.2rem;
+    }
+    
+    .game-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-board {
+        gap: 0.5rem;
+    }
+    
+    .card {
+        font-size: 0.7rem;
+    }
+    
+    .game-stats {
+        gap: 1rem;
+    }
+}

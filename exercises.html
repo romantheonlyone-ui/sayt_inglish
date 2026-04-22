@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнения - Английский язык 7 класс Б</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" style="text-decoration: none;">
+        <div class="logo">
+            <span class="logo-icon">EN</span>
+            <div>
+                <h1>English 7Б</h1>
+                <span class="logo-badge">Smart Learning</span>
+            </div>
+        </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="rules.html">Правила</a></li>
+                <li><a href="exercises.html">Упражнения</a></li>
+                <li><a href="vocabulary.html">Словарь</a></li>
+                <li><a href="about.html">О нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="game-container">
+            <section>
+                <h2>🎮 Найди пару</h2>
+                <p>Сопоставь английское слово с его переводом. Найди все пары!</p>
+                
+                <div class="game-header">
+                    <div class="game-stats">
+                        <div class="game-stat">
+                            <div class="game-stat-value" id="matchesCount">0</div>
+                            <div class="game-stat-label">Найдено пар</div>
+                        </div>
+                        <div class="game-stat">
+                            <div class="game-stat-value" id="attemptsCount">0</div>
+                            <div class="game-stat-label">Попыток</div>
+                        </div>
+                        <div class="game-stat">
+                            <div class="game-stat-value" id="timeCount">0</div>
+                            <div class="game-stat-label">Секунд</div>
+                        </div>
+                    </div>
+                    <button id="resetGameBtn" class="game-btn">🔄 Новая игра</button>
+                </div>
+                
+                <div class="game-board" id="gameBoard"></div>
+                
+                <div class="game-message" id="gameMessage"></div>
+                
+                <div class="game-controls">
+                    <button id="easyModeBtn" class="game-btn difficulty easy">🌟 Лёгкий (6 пар)</button>
+                    <button id="mediumModeBtn" class="game-btn difficulty medium">📚 Средний (8 пар)</button>
+                    <button id="hardModeBtn" class="game-btn difficulty hard">💪 Сложный (10 пар)</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Английский язык 7 класс Б</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

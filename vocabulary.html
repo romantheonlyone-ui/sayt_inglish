@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Словарь - Английский язык 7 класс Б</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" style="text-decoration: none;">
+        <div class="logo">
+            <span class="logo-icon">EN</span>
+            <div>
+                <h1>English 7Б</h1>
+                <span class="logo-badge">Smart Learning</span>
+            </div>
+        </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="rules.html">Правила</a></li>
+                <li><a href="exercises.html">Упражнения</a></li>
+                <li><a href="vocabulary.html">Словарь</a></li>
+                <li><a href="about.html">О нас</a></li>
+            </ul>
+        </nav>
+    </header>
+
+ <main>
+        <div class="vocab-container">
+            <section>
+                <h2>📚 Изучай английские слова</h2>
+                <p>Нажимай "Показать перевод", чтобы запомнить слово. Слова появляются случайным образом.</p>
+                
+                <!-- Карточка слова -->
+                <div class="word-card" id="wordCard">
+                    <div class="english-word" id="englishWord">Загрузка...</div>
+                    <div class="transcription" id="transcription"></div>
+                    <div class="russian-translation" id="russianTranslation"></div>
+                    <div class="example-sentence" id="exampleSentence"></div>
+                    
+                    <!-- Кнопки управления -->
+                    <div class="controls">
+                        <button id="showTranslationBtn" class="control-btn secondary">🔍 Показать перевод</button>
+                        <button id="nextWordBtn" class="control-btn primary">🎲 Следующее слово →</button>
+                    </div>
+                </div>
+                
+                <!-- Прогресс -->
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <!-- Статистика -->
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="wordsStudied">0</div>
+                        <div class="stat-label">Слов изучено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalWords">0</div>
+                        <div class="stat-label">Всего слов</div>
+                    </div>
+                </div>
+                
+                <div class="word-counter" id="wordCounter"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Английский язык 7 класс Б</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
