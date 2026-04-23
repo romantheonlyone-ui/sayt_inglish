@@ -308,6 +308,7 @@ function initMemoryGame() {
     let timerInterval = null;
     let isGameActive = true;
     let currentDifficulty = 'medium';
+    let isWaiting = false; // Блокировка для мобильных
     
     // База слов для игры
     const wordsDatabase = {
@@ -386,7 +387,6 @@ function initMemoryGame() {
         const newCards = [];
         
         words.forEach((word, index) => {
-            // Карточка с английским словом
             newCards.push({
                 id: index * 2,
                 pairId: index,
@@ -395,7 +395,6 @@ function initMemoryGame() {
                 isFlipped: false,
                 isMatched: false
             });
-            // Карточка с русским переводом
             newCards.push({
                 id: index * 2 + 1,
                 pairId: index,
@@ -423,29 +422,33 @@ function initMemoryGame() {
             } else {
                 cardElement.textContent = '?';
             }
-            cardElement.addEventListener('click', () => onCardClick(index));
+            cardElement.addEventListener('click', (e) => {
+                e.preventDefault();
+                onCardClick(index);
+            });
+            // Для touch-устройств
+            cardElement.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                onCardClick(index);
+            }, { passive: false });
             gameBoard.appendChild(cardElement);
         });
     }
     
     function onCardClick(index) {
-        if (!isGameActive) return;
+        if (!isGameActive || isWaiting) return;
         
         const clickedCard = cards[index];
         
-        // Нельзя кликать на уже совпавшие или открытые карточки
         if (clickedCard.isMatched || clickedCard.isFlipped) return;
-        
-        // Нельзя кликать на третью карточку
         if (flippedCards.length >= 2) return;
         
-        // Открываем карточку
         clickedCard.isFlipped = true;
         flippedCards.push({ index, card: clickedCard });
         renderBoard();
         
-        // Проверяем пару
         if (flippedCards.length === 2) {
+            isWaiting = true;
             attempts++;
             attemptsCountEl.textContent = attempts;
             checkMatch();
@@ -457,7 +460,6 @@ function initMemoryGame() {
         const isMatch = first.card.pairId === second.card.pairId;
         
         if (isMatch) {
-            // Нашли пару
             setTimeout(() => {
                 first.card.isMatched = true;
                 second.card.isMatched = true;
@@ -466,19 +468,19 @@ function initMemoryGame() {
                 
                 flippedCards = [];
                 renderBoard();
+                isWaiting = false;
                 
-                // Проверяем победу
                 if (matchedPairs === cards.length / 2) {
                     winGame();
                 }
             }, 300);
         } else {
-            // Неправильная пара
             setTimeout(() => {
                 first.card.isFlipped = false;
                 second.card.isFlipped = false;
                 flippedCards = [];
                 renderBoard();
+                isWaiting = false;
             }, 800);
         }
     }
@@ -491,8 +493,6 @@ function initMemoryGame() {
             Вы нашли все ${matchedPairs} пар за ${attempts} попыток и ${timer} секунд!
         `;
         gameMessage.classList.add('win');
-        
-        // Сохраняем рекорд
         saveRecord(currentDifficulty, attempts, timer);
     }
     
@@ -508,23 +508,20 @@ function initMemoryGame() {
     }
     
     function resetGame() {
-        // Сбрасываем состояние
         flippedCards = [];
         matchedPairs = 0;
         attempts = 0;
         isGameActive = true;
+        isWaiting = false;
         gameMessage.innerHTML = '';
         gameMessage.classList.remove('win', 'lose');
         
-        // Обновляем UI
         matchesCountEl.textContent = matchedPairs;
         attemptsCountEl.textContent = attempts;
         
-        // Создаем новые карточки
         cards = createCards(currentDifficulty);
         renderBoard();
         
-        // Перезапускаем таймер
         stopTimer();
         startTimer();
     }
@@ -533,7 +530,6 @@ function initMemoryGame() {
         currentDifficulty = difficulty;
         resetGame();
         
-        // Обновляем активную кнопку
         [easyModeBtn, mediumModeBtn, hardModeBtn].forEach(btn => {
             btn.style.opacity = '0.6';
         });
@@ -543,18 +539,15 @@ function initMemoryGame() {
         if (difficulty === 'hard') hardModeBtn.style.opacity = '1';
     }
     
-    // Обработчики событий
     resetBtn.addEventListener('click', resetGame);
     easyModeBtn.addEventListener('click', () => changeDifficulty('easy'));
     mediumModeBtn.addEventListener('click', () => changeDifficulty('medium'));
     hardModeBtn.addEventListener('click', () => changeDifficulty('hard'));
     
-    // Запускаем игру
     cards = createCards('medium');
     renderBoard();
     startTimer();
     
-    // Показываем рекорды при загрузке
     const records = JSON.parse(localStorage.getItem('gameRecords')) || {};
     if (Object.keys(records).length > 0) {
         let recordText = '🏆 Рекорды: ';
